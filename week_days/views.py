@@ -39,7 +39,16 @@ def todo_weekday(request, weekday):
         'saturday': 'Список дел на субботу',
         'sunday': 'Список дел на воскресенье'
     }
-    return HttpResponse(todo_days.get(weekday, 'Не правильный день недели') + back + home)
+    response = todo_days.get(weekday)
+    if response:
+        return HttpResponse(response + back + home)
+    return HttpResponseNotFound(f'Не правильный день недели {weekday}' + back + home)
+
+
+def todo_weekday_by_number(request, weekday):
+    if 0 < weekday < 8:
+        return HttpResponse(f'Сегодня {weekday} день недели')
+    return HttpResponseNotFound(f'Неверный номер дня - {weekday}')
 
 
 

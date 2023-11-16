@@ -23,4 +23,5 @@ urlpatterns = [
     path("horoscope/", include('horoscope.urls')),
     path('todo_week/', include('week_days.urls')),
     path('', index),
+    path('calculate_geometry/', include('geometry.urls')),
 ]
