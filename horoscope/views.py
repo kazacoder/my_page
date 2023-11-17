@@ -1,4 +1,4 @@
-from django.http import HttpResponse, HttpResponseNotFound
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.shortcuts import render
 
 
@@ -59,5 +59,9 @@ def get_info_about_zodaic_sign(request, sign_zodiac: str):
     return HttpResponseNotFound(f"такого знака - <b>{sign_zodiac}</b> - не существует" + back + home)
 
 
-def get_info_about_zodaic_sign_by_number(request, sign_zodiac: str):
-    return HttpResponse(f'number {sign_zodiac}')
+def get_info_about_zodaic_sign_by_number(request, sign_number: int):
+    zodiacs = list(signs)
+    if sign_number > len(zodiacs) or sign_number < 1:
+        return HttpResponseNotFound(f'Неправильный порядковый номер знака зодиака {sign_number}')
+    name_zodiac = zodiacs[sign_number - 1]
+    return HttpResponseRedirect(f'/horoscope/{name_zodiac}')
