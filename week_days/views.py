@@ -1,4 +1,5 @@
-from django.http import HttpResponse, HttpResponseNotFound
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
+from calendar import day_name
 from django.shortcuts import render
 
 # Create your views here.
@@ -47,8 +48,8 @@ def todo_weekday(request, weekday):
 
 def todo_weekday_by_number(request, weekday):
     if 0 < weekday < 8:
-        return HttpResponse(f'Сегодня {weekday} день недели')
-    return HttpResponseNotFound(f'Неверный номер дня - {weekday}')
+        return HttpResponseRedirect(f'/todo_week/{day_name[weekday-1].lower()}/')
+    return HttpResponseNotFound(f'Неверный номер дня - {weekday}' + back + home)
 
 
 
