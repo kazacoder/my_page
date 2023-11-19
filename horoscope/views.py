@@ -1,11 +1,12 @@
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.shortcuts import render
+from django.urls import reverse
 
 
 # Create your views here.
 
 def index(request):
-    return HttpResponse('''
+    return HttpResponse(f'''
                         <h1><a href="horoscope">Гороскоп</a></h1>
                         <h1><a href="todo_week">Список дел</a></h1>
                         <h1><a href="calculate_geometry">Геометрия</a></h1>
@@ -64,4 +65,5 @@ def get_info_about_zodaic_sign_by_number(request, sign_number: int):
     if sign_number > len(zodiacs) or sign_number < 1:
         return HttpResponseNotFound(f'Неправильный порядковый номер знака зодиака {sign_number}')
     name_zodiac = zodiacs[sign_number - 1]
-    return HttpResponseRedirect(f'/horoscope/{name_zodiac}')
+    redirect_url = reverse('horoscope-name', args=(name_zodiac, ))
+    return HttpResponseRedirect(redirect_url)

@@ -1,6 +1,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from math import pi
 from django.shortcuts import render
+from django.urls import reverse
 
 
 # Create your views here.
@@ -21,11 +22,11 @@ def index(request):
     return HttpResponse(f"Геометрия")
 
 
-def redirect_to_route(request, shape=None, a=None, b=None):
+def redirect_to_route(request, shape=None, a=0, b=0):
     redirect_dict = {
-                        'get_rectangle_area': f'/calculate_geometry/rectangle/{a}/{b}',
-                        'get_circle_area': f'/calculate_geometry/circle/{a}',
-                        'get_square_area': f'/calculate_geometry/square/{a}'
+                        'get_rectangle_area': reverse('rect', args=(a, b)),
+                        'get_circle_area': reverse('circle', args=(a, )),
+                        'get_square_area': reverse('square', args=(a, ))
                     }
     if shape in redirect_dict.keys():
         return HttpResponseRedirect(redirect_dict[shape])

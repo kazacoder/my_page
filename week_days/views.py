@@ -1,6 +1,7 @@
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from calendar import day_name
 from django.shortcuts import render
+from django.urls import reverse
 
 # Create your views here.
 
@@ -48,7 +49,8 @@ def todo_weekday(request, weekday):
 
 def todo_weekday_by_number(request, weekday):
     if 0 < weekday < 8:
-        return HttpResponseRedirect(f'/todo_week/{day_name[weekday-1].lower()}/')
+        redirect_url = reverse('todo-week', args=(day_name[weekday-1].lower(),))
+        return HttpResponseRedirect(redirect_url)
     return HttpResponseNotFound(f'Неверный номер дня - {weekday}' + back + home)
 
 
