@@ -5,6 +5,7 @@ register_converter(converters.FourDigitYearConverter, 'yyyy')
 register_converter(converters.MyFloatConverter, 'my_float')
 register_converter(converters.MyDateConverter, 'my_date')
 register_converter(converters.SplitConvertor, 'split')
+register_converter(converters.UpperConvertor, 'upper')
 
 urlpatterns = [
     path('type/', views.sign_type),

@@ -143,3 +143,7 @@ def get_my_float_converters(request, sign_zodiac):
 
 def get_list_from_str(request, value):
     return HttpResponse(str(value))
+
+
+def value_to_upper(request, value):
+    return HttpResponse(value)
