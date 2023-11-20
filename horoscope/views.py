@@ -1,6 +1,7 @@
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
+from datetime import datetime as dt
 
 
 # Create your views here.
@@ -27,6 +28,21 @@ sign_types = {
     'earth': ['taurus', 'virgo', 'capricorn'],
     'air': ['gemini', 'libra', 'aquarius'],
     'water': ['cancer', 'scorpio', 'pisces']
+}
+
+zodiac_dates = {
+    "aries": (dt(2000, 3, 21), dt(2000, 4, 20)),
+    "taurus": (dt(2000, 4, 21), dt(2000, 5, 21)),
+    "gemini": (dt(2000, 5, 22), dt(2000, 6, 21)),
+    "cancer": (dt(2000, 6, 22), dt(2000, 7, 22)),
+    "leo": (dt(2000, 7, 23), dt(2000, 8, 21)),
+    "virgo": (dt(2000, 8, 22), dt(2000, 9, 23)),
+    "libra": (dt(2000, 9, 24), dt(2000, 10, 23)),
+    "scorpio": (dt(2000, 10, 24), dt(2000, 11, 22)),
+    "sagittarius": (dt(2000, 11, 23), dt(2000, 12, 22)),
+    "capricorn": (dt(1999, 12, 23), dt(2000, 1, 20)),
+    "aquarius": (dt(2000, 1, 21), dt(2000, 2, 19)),
+    "pisces": (dt(2000, 2, 20), dt(2000, 3, 20))
 }
 
 
@@ -83,3 +99,30 @@ def get_info_about_zodiac_sign_by_number(request, sign_number: int):
     name_zodiac = zodiacs[sign_number - 1]
     redirect_url = reverse('horoscope-name', args=(name_zodiac, ))
     return HttpResponseRedirect(redirect_url)
+
+
+def get_info_by_date(request, month, day):
+    sign_by_date = get_sign_by_date(month, day)
+    if sign_by_date[1]:
+        return HttpResponseNotFound(f'<h1>{sign_by_date[0]}</h1>')
+    redirect_url = reverse('horoscope-name', args=(sign_by_date[0],))
+    return HttpResponseRedirect(redirect_url)
+
+
+def get_sign_by_date(month, day):
+    try:
+        dt(2000, month, day)
+        filtered_month = filter(lambda x: (x[1][0].month == month and x[1][0].day <= day)
+                                          or (x[1][1].month == month and x[1][0].day >= day),
+                                zodiac_dates.items())
+        response = tuple(filtered_month)[0][0]
+        error = False
+    except ValueError as e:
+        if str(e) == 'day is out of range for month':
+            response = 'Неверный номер дня'
+        elif str(e) == 'month must be in 1..12':
+            response = 'месяц должен быть в диапазоне 1..12'
+        else:
+            response = str(e)
+        error = True
+    return response, error
