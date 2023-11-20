@@ -22,6 +22,22 @@ signs = {
     'pisces': ("♓ ['paisi:z] Рыбы - двенадцатый знак зодиака, планеты Юпитер (с 20 февраля по 20 марта).", 'Рыбы'),
 }
 
+sign_types = {
+    'fire': ['aries', 'leo', 'sagittarius'],
+    'earth': ['taurus', 'virgo', 'capricorn'],
+    'air': ['gemini', 'libra', 'aquarius'],
+    'water': ['cancer', 'scorpio', 'pisces']
+}
+
+
+def get_sign_http_list(sign_list=signs):
+    li_elem = ''
+    for sign in signs.items():
+        if sign[0] in sign_list:
+            reference = reverse('horoscope-name', args=(sign[0], ))
+            li_elem += f'<li><a href="{reference}"><b>{sign[1][1]}</b> {" " + sign[0].title()}</a>'
+    return li_elem
+
 
 def index(request):
     return HttpResponse(f'''
@@ -31,22 +47,36 @@ def index(request):
                         ''')
 
 
-def horoscope(request):
+def sign_type(request):
     li_elem = ''
-    for sign in signs.items():
-        li_elem += f'<li><a href="{sign[0]}"><b>{sign[1][1]}</b> {" " + sign[0].title()}</a>'
-    response = f'<ol>{li_elem}</ol><br><a href="/">home</a>'
+    for type_sign in sign_types:
+        li_elem += f'<li><a href="{type_sign}/">{type_sign.title()}</a>'
+    response = f'<ul>{li_elem}</ul>'
+    return HttpResponse(response + back + home)
+
+
+def current_sign_type_list(request, type_of_sign):
+    if type_of_sign in sign_types:
+        li_elem = get_sign_http_list(sign_types[type_of_sign])
+        response = f'<h1>{type_of_sign.title()}</h1><ul>{li_elem}</ul><br><br>'
+        return HttpResponse(response + back + home)
+    return HttpResponseNotFound(f"Такой стихии - <b>{type_of_sign}</b> - не существует" + back + home)
+
+
+def horoscope(request):
+    li_elem = get_sign_http_list()
+    response = f'<ol>{li_elem}</ol><br><br><a href="type/">Знаки по стихии</a><br><a href="/">home</a>'
     return HttpResponse(response)
 
 
-def get_info_about_zodaic_sign(request, sign_zodiac: str):
+def get_info_about_zodiac_sign(request, sign_zodiac: str):
     response = signs.get(sign_zodiac)
     if response:
         return HttpResponse(response[0] + back + home)
     return HttpResponseNotFound(f"такого знака - <b>{sign_zodiac}</b> - не существует" + back + home)
 
 
-def get_info_about_zodaic_sign_by_number(request, sign_number: int):
+def get_info_about_zodiac_sign_by_number(request, sign_number: int):
     zodiacs = list(signs)
     if sign_number > len(zodiacs) or sign_number < 1:
         return HttpResponseNotFound(f'Неправильный порядковый номер знака зодиака {sign_number}')
