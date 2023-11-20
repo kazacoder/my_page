@@ -139,3 +139,7 @@ def get_yyyy_converters(request, sign_zodiac):
 
 def get_my_float_converters(request, sign_zodiac):
     return HttpResponse(f'Флоат {sign_zodiac}')
+
+
+def get_list_from_str(request, value):
+    return HttpResponse(str(value))
