@@ -126,3 +126,16 @@ def get_sign_by_date(month, day):
             response = str(e)
         error = True
     return response, error
+
+
+def get_my_date_converters(request, date):
+    redirect_url = reverse('horoscope-name', args=(get_sign_by_date(date.month, date.day)[0],))
+    return HttpResponseRedirect(redirect_url)
+
+
+def get_yyyy_converters(request, sign_zodiac):
+    return HttpResponse(f'Год {sign_zodiac}')
+
+
+def get_my_float_converters(request, sign_zodiac):
+    return HttpResponse(f'Флоат {sign_zodiac}')
