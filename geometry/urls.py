@@ -7,5 +7,5 @@ urlpatterns = [
     path('circle/<int:radius>', views.get_circle_area, name='circle'),
     path('<shape>/<int:a>/<int:b>', views.redirect_to_route),
     path('<shape>/<int:a>', views.redirect_to_route),
-
+    path('<shape>', views.shapes_links),
 ]

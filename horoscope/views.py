@@ -1,6 +1,7 @@
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
+from django.template.loader import render_to_string
 from datetime import datetime as dt
 
 
@@ -9,7 +10,7 @@ from datetime import datetime as dt
 home = '<br><a href="/">home</a>'
 back = '<br><a href="..">back</a>'
 signs = {
-    'aries': ("<h1>♈</h1> [ɛəri:z] Овен - первый знак зодиака, планета Марс (с 21 марта по 20 апреля).", 'Овен'),
+    'aries': ("♈ [ɛəri:z] Овен - первый знак зодиака, планета Марс (с 21 марта по 20 апреля).", 'Овен'),
     'taurus': ("♉ ['tɔ:rəs] Телец - второй знак зодиака, планета Венера (с 21 апреля по 21 мая).", 'Телец'),
     'gemini': ("♊ ['dʒeminai] Близнецы - третий знак зодиака, планета Меркурий (с 22 мая по 21 июня).", 'Близнецы'),
     'cancer': ("♋ ['kænsə(r)] Рак - четвёртый знак зодиака, Луна (с 22 июня по 22 июля).", 'Рак'),
@@ -56,11 +57,7 @@ def get_sign_http_list(sign_list=signs):
 
 
 def index(request):
-    return HttpResponse(f'''
-                        <h1><a href="horoscope">Гороскоп</a></h1>
-                        <h1><a href="todo_week">Список дел</a></h1>
-                        <h1><a href="calculate_geometry">Геометрия</a></h1>
-                        ''')
+    return HttpResponse(render_to_string('root/index.html'))
 
 
 def sign_type(request):
@@ -86,9 +83,11 @@ def horoscope(request):
 
 
 def get_info_about_zodiac_sign(request, sign_zodiac: str):
-    response = signs.get(sign_zodiac)
-    if response:
-        return HttpResponse(response[0] + back + home)
+    description = signs.get(sign_zodiac)
+    if description:
+        response = render(request, 'horoscope/info_zodiac.html',
+                          {'description': description[0], 'sign': sign_zodiac.title()})
+        return response
     return HttpResponseNotFound(f"такого знака - <b>{sign_zodiac}</b> - не существует" + back + home)
 
 

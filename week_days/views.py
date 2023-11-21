@@ -8,19 +8,9 @@ from django.urls import reverse
 home = '<br><a href="/">home</a>'
 back = '<br><a href="..">back</a>'
 
+
 def todo_week(request):
-    return HttpResponse('''
-                        <h1>Список дел</h1>
-                        <ol>
-                        <li><a href="monday">Понедельник</a>
-                        <li><a href="tuesday">Вторник</a>
-                        <li><a href="wednesday">Среда</a>
-                        <li><a href="thursday">Четверг</a>
-                        <li><a href="friday">Пятница</a>
-                        <li><a href="saturday">Суббота</a>
-                        <li><a href="sunday">Воскресенье</a>
-                        </ol>
-                        ''' + home)
+    return render(request, 'week_days/greeting.html')
 
 
 def todo_weekday(request, weekday):

@@ -19,7 +19,7 @@ def get_circle_area (request, radius):
 
 
 def index(request):
-    return HttpResponse(f"Геометрия")
+    return render(request, 'geometry/geometry_index.html')
 
 
 def redirect_to_route(request, shape=None, a=0, b=0):
@@ -31,3 +31,8 @@ def redirect_to_route(request, shape=None, a=0, b=0):
     if shape in redirect_dict.keys():
         return HttpResponseRedirect(redirect_dict[shape])
     return HttpResponse(f'{shape}')
+
+
+def shapes_links(request, shape):
+    return render(request, f'geometry/{shape}.html')
+
