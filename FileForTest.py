@@ -1,6 +1,6 @@
-from horoscope.converters import UpperConvertor
+from horoscope.views import signs
+from django.test import TestCase
 
+for sign, description in signs.items():
 
-my_converter = UpperConvertor()
-assert my_converter.to_python('python') == 'PYTHON'
-assert my_converter.to_url('PYTHON') == 'python'
+    print(sign, description[0])
