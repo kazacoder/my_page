@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'horoscope',
     'week_days',
-    'geometry'
+    'geometry',
+    'actor_wiki',
+    'guinness_records',
 ]
 
 MIDDLEWARE = [

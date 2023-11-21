@@ -29,6 +29,8 @@
         <option value="$MODULE_DIR$/horoscope/templates" />
         <option value="$MODULE_DIR$/week_days/templates" />
         <option value="$MODULE_DIR$/geometry/templates" />
+        <option value="$MODULE_DIR$/actor_wiki/templates" />
+        <option value="$MODULE_DIR$/guinness_records/templates" />
       </list>
     </option>
   </component>
