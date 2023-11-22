@@ -6,8 +6,8 @@
 </head>
 <body>
     <p>
-        {% for i, record in record_list %}
-            <a href="{{ i }}">{{ record }}</a>
+        {% for record in record_list %}
+            <a href="{{ forloop.counter0 }}">{{ record }}</a>
             <br>
         {% endfor %}
     </p>

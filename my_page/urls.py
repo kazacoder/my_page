@@ -26,4 +26,5 @@ urlpatterns = [
     path('', index),
     path('calculate_geometry/', include('geometry.urls')),
     path('guiness_records/', include('guinness_records.urls')),
+    path('test_app/', include('app_for_tests.urls')),
 ]

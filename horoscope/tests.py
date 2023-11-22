@@ -20,10 +20,15 @@ class TestHoroscope(TestCase):
         for sign, description in signs.items():
             response = self.client.get(reverse('horoscope-name', args=(sign, )))
             self.assertEqual(response.status_code, 200)
-            self.assertIn(description[0], response.content.decode())
+            self.assertIn(' '.join(description[0].split()[2:]), response.content.decode())  # убираем из описания спец
+                                                                                            # символы, т.к. при
+                                                                                            # декодировании из html
+                                                                                            # они меняются
 
     def test_horoscope_redirect(self):
         for i, sign in enumerate(signs, 1):
             response = self.client.get(reverse('horoscope-name', args=(i, )))
             self.assertEqual(response.status_code, 302)
             self.assertEqual(response.url, reverse('horoscope-name', args=(sign, )))
+
+

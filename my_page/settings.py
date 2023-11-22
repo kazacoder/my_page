@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'geometry',
     'actor_wiki',
     'guinness_records',
+    'app_for_tests',
 ]
 
 MIDDLEWARE = [

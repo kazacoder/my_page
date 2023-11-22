@@ -1,6 +1,7 @@
 from horoscope.views import signs, sign_types, zodiac_dates
 from datetime import datetime as dt
 from django.test import TestCase
+from faker import Faker
 
 
 class Zodiac:
@@ -23,9 +24,19 @@ def get_sign_type(sign):
 aries = Zodiac('Aries', signs['aries'][1], signs['aries'][0], get_sign_type('aries'), zodiac_dates['aries'][0],
                zodiac_dates['aries'][1])
 
-print(aries.name)
-print(aries.name_rus)
-print(aries.description)
-print(aries.type)
-print(aries.date_begin)
-print(aries.date_end)
+
+
+print([Faker("ru_RU").name() for _ in range(10)])
+
+people = [
+    'Цветков Алексей Якубович',
+    'Ювеналий Феликсович Лазарев',
+    'Овчинников Измаил Эдуардович',
+    'Анастасия Антоновна Бобылева',
+    'Майя Никифоровна Михайлова',
+    'Радован Владиленович Колобов',
+    'Мухина Виктория Захаровна',
+    'Мокей Захарьевич Виноградов',
+    'Крылова Наталья Романовна',
+    'Милан Викторович Кабанов'
+]

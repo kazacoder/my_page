@@ -5,7 +5,7 @@ from .records_list import records_list
 
 
 def index(request):
-    data = {'record_list': [(i, record['title']) for i, record in enumerate(records_list)]}
+    data = {'record_list': [record['title'] for record in records_list]}
     return render(request, 'guinness_records/record_list.html', data)
 
 

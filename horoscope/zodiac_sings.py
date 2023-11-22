@@ -37,4 +37,3 @@ zodiac_dates = {
     "pisces": (dt(2000, 2, 20), dt(2000, 3, 20))
 }
 
-print(sign_types.keys())
