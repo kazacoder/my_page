@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-</head>
-<body>
+{% extends 'root/base.html' %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block content %}
     <h1><a href="horoscope">Гороскоп</a></h1>
     <h1><a href="todo_week">Список дел</a></h1>
     <h1><a href="calculate_geometry">Геометрия</a></h1>
     <h1><a href="actor_wiki">Вики Актеры</a></h1>
     <h1><a href="guiness_records">Рекорды Гиннеса</a></h1>
     <h1><a href="test_app">Тест</a></h1>
-</body>
-</html>
+{% endblock %}

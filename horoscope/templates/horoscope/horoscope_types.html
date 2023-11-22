@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Знаки зодиака по стихии</title>
-</head>
-<body>
+{% extends 'root/base.html' %}
+
+{% block title %}
+    Знаки зодиака по стихии
+{% endblock %}
+
+{% block content %}
     <ul>
         {% for sign_type in sign_types %}
             <li><a href="{{ sign_type }}"><b>{{ sign_type|title }}</b></a>
@@ -12,8 +12,5 @@
     </ul>
     <br>
     <br>
-    <a href="/">home</a>
-    <br>
     <a href="..">back</a>
-</body>
-</html>
+{% endblock %}

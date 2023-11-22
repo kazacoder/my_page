@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Знаки зодиака</title>
-</head>
-<body>
+{% extends 'root/base.html' %}
+
+{% block title %}
+    Знаки зодиака
+{% endblock %}
+
+{% block content %}
     <ol>
         {% for title, title_rus in signs_list %}
             <li><a href="{% url 'horoscope-name' sign_zodiac=title %}"><b>{{ title_rus }}</b> {{ title|title }}</a>
@@ -13,9 +13,4 @@
     <br>
     <br>
     <a href="type/">Знаки по стихии</a>
-    <br>
-    <a href="/">home</a>
-</body>
-</html>
-
-
+{% endblock %}

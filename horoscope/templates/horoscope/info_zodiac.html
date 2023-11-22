@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Гороскоп для {{ sign }}</title>
-</head>
-<body>
+{% extends 'root/base.html' %}
+
+{% block title %}
+    Гороскоп для {{ sign }}
+{% endblock %}
+
+{% block content %}
     <h1>{{ sign }}</h1>
     <h2>{{ description }}</h2>
-    <br><a href="/">home</a>
     <br><a href="..">back</a>
-</body>
-</html>
+{% endblock %}
