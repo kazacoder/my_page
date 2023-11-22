@@ -1,50 +1,14 @@
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
-from django.template.loader import render_to_string
 from datetime import datetime as dt
+from .zodiac_sings import signs, sign_types, zodiac_dates
 
 
 # Create your views here.
 
 home = '<br><a href="/">home</a>'
 back = '<br><a href="..">back</a>'
-signs = {
-    'aries': ("♈ [ɛəri:z] Овен - первый знак зодиака, планета Марс (с 21 марта по 20 апреля).", 'Овен'),
-    'taurus': ("♉ ['tɔ:rəs] Телец - второй знак зодиака, планета Венера (с 21 апреля по 21 мая).", 'Телец'),
-    'gemini': ("♊ ['dʒeminai] Близнецы - третий знак зодиака, планета Меркурий (с 22 мая по 21 июня).", 'Близнецы'),
-    'cancer': ("♋ ['kænsə(r)] Рак - четвёртый знак зодиака, Луна (с 22 июня по 22 июля).", 'Рак'),
-    'leo': ("♌ ['li:əu] Лев - пятый знак зодиака, солнце (с 23 июля по 21 августа).", 'Лев'),
-    'virgo': ("♍ ['vз:gəu] Дева - шестой знак зодиака, планета Меркурий (с 22 августа по 23 сентября).", 'Дева'),
-    'libra': ("♎ ['li:brə] Весы - седьмой знак зодиака, планета Венера (с 24 сентября по 23 октября).", 'Весы'),
-    'scorpio': ("♏ ['skɔ:piəu] Скорпион - восьмой знак зодиака, планета Марс (с 24 октября по 22 ноября).", 'Скорпион'),
-    'sagittarius': ("♐ [sædʒi'tɛəriəs] Стрелец - девятый знак зодиака, планета Юпитер (с 23 ноября по 22 декабря).", 'Стрелец'),
-    'capricorn': ("♑ ['kæprikɔ:n] Козерог - десятый знак зодиака, планета Сатурн (с 23 декабря по 20 января).", 'Козерог'),
-    'aquarius': ("♒ [ə'kwɛəriəs] Водолей - одиннадцатый знак зодиака, планеты Уран и Сатурн (с 21 января по 19 февраля).", 'Водолей'),
-    'pisces': ("♓ ['paisi:z] Рыбы - двенадцатый знак зодиака, планеты Юпитер (с 20 февраля по 20 марта).", 'Рыбы'),
-}
-
-sign_types = {
-    'fire': ['aries', 'leo', 'sagittarius'],
-    'earth': ['taurus', 'virgo', 'capricorn'],
-    'air': ['gemini', 'libra', 'aquarius'],
-    'water': ['cancer', 'scorpio', 'pisces']
-}
-
-zodiac_dates = {
-    "aries": (dt(2000, 3, 21), dt(2000, 4, 20)),
-    "taurus": (dt(2000, 4, 21), dt(2000, 5, 21)),
-    "gemini": (dt(2000, 5, 22), dt(2000, 6, 21)),
-    "cancer": (dt(2000, 6, 22), dt(2000, 7, 22)),
-    "leo": (dt(2000, 7, 23), dt(2000, 8, 21)),
-    "virgo": (dt(2000, 8, 22), dt(2000, 9, 23)),
-    "libra": (dt(2000, 9, 24), dt(2000, 10, 23)),
-    "scorpio": (dt(2000, 10, 24), dt(2000, 11, 22)),
-    "sagittarius": (dt(2000, 11, 23), dt(2000, 12, 22)),
-    "capricorn": (dt(1999, 12, 23), dt(2000, 1, 20)),
-    "aquarius": (dt(2000, 1, 21), dt(2000, 2, 19)),
-    "pisces": (dt(2000, 2, 20), dt(2000, 3, 20))
-}
 
 
 def get_sign_http_list(sign_list=signs):
@@ -57,15 +21,12 @@ def get_sign_http_list(sign_list=signs):
 
 
 def index(request):
-    return HttpResponse(render_to_string('root/index.html'))
+    return render(request, 'root/index.html')
 
 
 def sign_type(request):
-    li_elem = ''
-    for type_sign in sign_types:
-        li_elem += f'<li><a href="{type_sign}/">{type_sign.title()}</a>'
-    response = f'<ul>{li_elem}</ul>'
-    return HttpResponse(response + back + home)
+    context = {'sign_types': sign_types.keys()}
+    return render(request, 'horoscope/horoscope_types.html', context)
 
 
 def current_sign_type_list(request, type_of_sign):
@@ -77,9 +38,8 @@ def current_sign_type_list(request, type_of_sign):
 
 
 def horoscope(request):
-    li_elem = get_sign_http_list()
-    response = f'<ol>{li_elem}</ol><br><br><a href="type/">Знаки по стихии</a><br><a href="/">home</a>'
-    return HttpResponse(response)
+    context = {'signs_list': [(k, v[1]) for k, v in signs.items()]}
+    return render(request, 'horoscope/horoscope_index.html', context)
 
 
 def get_info_about_zodiac_sign(request, sign_zodiac: str):
@@ -137,7 +97,7 @@ def get_yyyy_converters(request, sign_zodiac):
 
 
 def get_my_float_converters(request, sign_zodiac):
-    return HttpResponse(f'Флоат {sign_zodiac}')
+    return HttpResponse(f'вещественное число {sign_zodiac}')
 
 
 def get_list_from_str(request, value):

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Знаки зодиака</title>
+</head>
+<body>
+    <ol>
+        {% for title, title_rus in signs_list %}
+            <li><a href="{{ title }}"><b>{{ title_rus }}</b> {{ title|title }}</a>
+        {% endfor %}
+    </ol>
+    <br>
+    <br>
+    <a href="type/">Знаки по стихии</a>
+    <br>
+    <a href="/">home</a>
+</body>
+</html>
