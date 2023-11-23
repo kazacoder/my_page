@@ -5,11 +5,12 @@
 {% endblock %}
 
 {% block content %}
+
     <p>
         {% for record in record_list %}
             <a href="{{ forloop.counter0 }}">{{ record }}</a>
             <br>
         {% endfor %}
     </p>
-    <br><a href="..">back</a>
+
 {% endblock %}
