@@ -23,7 +23,7 @@ urlpatterns = [
     path("horoscope/", include('horoscope.urls')),
     path('todo_week/', include('week_days.urls')),
     path('actor_wiki/', include('actor_wiki.urls')),
-    path('', index),
+    path('', index, name='home-page'),
     path('calculate_geometry/', include('geometry.urls')),
     path('guiness_records/', include('guinness_records.urls')),
     path('test_app/', include('app_for_tests.urls')),

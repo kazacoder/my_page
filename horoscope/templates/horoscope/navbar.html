@@ -1,0 +1,7 @@
+<nav>
+    {% for title, title_rus in signs_list %}
+        <a href="{% url 'horoscope-name' sign_zodiac=title %}">{{ title_rus }}</a>
+    {% endfor %}
+    <a href="{% url 'home-page' %}">home</a>
+    <a href="..">back</a>
+</nav>

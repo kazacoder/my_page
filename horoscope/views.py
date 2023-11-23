@@ -9,6 +9,7 @@ from .zodiac_sings import signs, sign_types, zodiac_dates
 
 home = '<br><a href="/">home</a>'
 back = '<br><a href="..">back</a>'
+signs_list = [(k, v[1]) for k, v in signs.items()]
 
 
 def get_sign_http_list(sign_list=signs):
@@ -38,7 +39,7 @@ def current_sign_type_list(request, type_of_sign):
 
 
 def horoscope(request):
-    context = {'signs_list': [(k, v[1]) for k, v in signs.items()]}
+    context = {'signs_list': signs_list}
     return render(request, 'horoscope/horoscope_index.html', context)
 
 
@@ -46,7 +47,12 @@ def get_info_about_zodiac_sign(request, sign_zodiac: str):
     description = signs.get(sign_zodiac)
     if description:
         response = render(request, 'horoscope/info_zodiac.html',
-                          {'description': description[0], 'sign': sign_zodiac.title()})
+                          {
+                              'description': description[0],
+                              'sign': sign_zodiac.title(),
+                              'title_rus': description[1],
+                              'signs_list': signs_list
+                          })
         return response
     return HttpResponseNotFound(f"такого знака - <b>{sign_zodiac}</b> - не существует" + back + home)
 

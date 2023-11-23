@@ -9,3 +9,7 @@ def index(request):
 
 def people(request):
     return render(request, 'app_for_tests/people.html', {'people': people_list})
+
+
+def gamers(request):
+    return render(request, 'app_for_tests/gamers.html')

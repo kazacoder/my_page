@@ -1,13 +1,18 @@
 {% extends 'root/base.html' %}
+{% load static %}
+{% block css_additional %}
+    <link rel="stylesheet" href=" {% static 'horoscope/css/index.css' %}">
 
+{% endblock %}
 {% block title %}
     Знаки зодиака
 {% endblock %}
 
 {% block content %}
+    <h1>Приложение гороскоп</h1>
     <ol>
         {% for title, title_rus in signs_list %}
-            <li><a href="{% url 'horoscope-name' sign_zodiac=title %}"><b>{{ title_rus }}</b> {{ title|title }}</a>
+            <li><a href="{% url 'horoscope-name' sign_zodiac=title %}">{{ title_rus }}</a>
         {% endfor %}
     </ol>
     <br>
