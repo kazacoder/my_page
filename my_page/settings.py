@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'actor_wiki',
     'guinness_records',
     'app_for_tests',
+    'movie_app',
+    'book_shop'
 ]
 
 MIDDLEWARE = [

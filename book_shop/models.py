@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 
 
-class Movie(models.Model):
-    name = models.CharField(max_length=40)
+class Book(models.Model):
+    title = models.CharField(max_length=70)
     rating = models.IntegerField()
+
