@@ -1,5 +1,6 @@
 {% extends 'root/base.html' %}
 {% load static %}
+{% load custom_filtres %}
 {% block css_additional %}
     <link rel="stylesheet" href=" {% static 'horoscope/css/info.css' %}">
 {% endblock %}
@@ -10,7 +11,7 @@
 
 {% block content %}
     {% include 'horoscope/navbar.html' %}
-    <h1>{{ title_rus }}</h1>
+    <h1>{{ description|split|slice:"2:3"|first}}</h1>
     <h2>{{ description }}</h2>
     <br><a href="..">back</a>
 {% endblock %}

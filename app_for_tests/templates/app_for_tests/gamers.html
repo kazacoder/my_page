@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
+{% load custom_filtres %}
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -38,5 +40,16 @@
             </tr>
         </tbody>
     </table>
+
+
+{% for i in 10|times %}
+    <p>Hello</p>
+{% endfor %}
+
+
+{% for c in -3|filter_range:8 %}
+    <p>{{ c }}</p>
+{% endfor %}
+
 </body>
 </html>
