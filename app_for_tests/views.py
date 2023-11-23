@@ -13,3 +13,7 @@ def people(request):
 
 def gamers(request):
     return render(request, 'app_for_tests/gamers.html')
+
+
+def gamers(request):
+    return render(request, 'app_for_tests/gamers.html')

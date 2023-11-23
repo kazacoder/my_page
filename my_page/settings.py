@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'guinness_records',
     'app_for_tests',
     'movie_app',
-    'book_shop'
+    'book_shop',
+    'django_extensions'
 ]
 
 MIDDLEWARE = [
