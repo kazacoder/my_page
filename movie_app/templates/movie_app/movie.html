@@ -1,44 +1,26 @@
-<!DOCTYPE html>
+{% extends 'movie_app/base.html' %}
 {% load static %}
+{% block title %}Фильмы{% endblock %}
+{% block css_additional %} <link rel="stylesheet" href="{% static 'app_for_tests/css/table.css' %}"> {% endblock %}
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Таблица игроков</title>
-    <link rel="stylesheet" href="{% static 'app_for_tests/css/table.css' %}">
-</head>
-<body>
+{% block content %}
+    <h2>Список всех фильмов</h2>
     <table class="styled-table">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Points</th>
-                <th>Active</th>
+                <th>Название</th>
+                <th>Год</th>
+                <th>Рейтинг</th>
             </tr>
         </thead>
         <tbody>
+            {% for movie in movies %}
             <tr>
-                <td>Dom</td>
-                <td>6000</td>
-                <td>False</td>
+                <td><a href="{{ movie.get_url }}">{{ movie.name }}</a></td>
+                <td>{{ movie.year|default:"-" }}</td>
+                <td>{{ movie.rating }}</td>
             </tr>
-            <tr class="active-row">
-                <td>Melissa</td>
-                <td>5150</td>
-                <td>True</td>
-            </tr>
-             <tr class="active-row">
-                <td>David</td>
-                <td>4500</td>
-                <td>True</td>
-            </tr>
-            <tr>
-                <td>Gerard</td>
-                <td>3000</td>
-                <td>False</td>
-            </tr>
+            {% endfor %}
         </tbody>
     </table>
-
-</body>
-</html>
+{% endblock %}

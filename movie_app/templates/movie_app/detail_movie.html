@@ -1,0 +1,13 @@
+{% extends 'movie_app/base.html' %}
+{% load static %}
+{% block title %}Информация о фильме {{ movie.name }}{% endblock %}
+{% block css_additional %} <link rel="stylesheet" href="{% static 'app_for_tests/css/table.css' %}"> {% endblock %}
+
+{% block content %}
+    <h2>Информация о фильме </h2>
+    <h2>Название: {{ movie.name }}</h2>
+    <h2>Год: {{ movie.year|default:"-" }}</h2>
+    <h2>Рейтинг: {{ movie.rating }}</h2>
+    <h2>Бюджет: {{ movie.budget }}</h2>
+
+{% endblock %}
