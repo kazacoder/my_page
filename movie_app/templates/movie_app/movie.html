@@ -11,6 +11,7 @@
                 <th>Название</th>
                 <th>Год</th>
                 <th>Рейтинг</th>
+                <th>Бюджет</th>
             </tr>
         </thead>
         <tbody>
@@ -19,6 +20,7 @@
                 <td><a href="{{ movie.get_url }}">{{ movie.name }}</a></td>
                 <td>{{ movie.year|default:"-" }}</td>
                 <td>{{ movie.rating }}</td>
+                <td>{{ movie.budget }}</td>
             </tr>
             {% endfor %}
         </tbody>
