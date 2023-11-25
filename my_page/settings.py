@@ -46,7 +46,9 @@ INSTALLED_APPS = [
     'movie_app',
     'book_shop',
     'django_extensions',
-    'debug_toolbar'
+    'debug_toolbar',
+    'scool',
+
 ]
 
 MIDDLEWARE = [
