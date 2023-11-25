@@ -18,6 +18,9 @@ from django.contrib import admin
 from django.urls import path, include
 from horoscope.views import index
 
+admin.AdminSite.site_header = "Моя админка"
+admin.AdminSite.index_title = "Super админка"
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("horoscope/", include('horoscope.urls')),

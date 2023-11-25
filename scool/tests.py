@@ -44,7 +44,7 @@ class MovieModelTestCase(TestCase):
         self.print_info('Finish test_student_get_record')
 
     def test_student_adult(self):
-        # Проверка метода get_url()
+        # Проверка метода is_adult()
         self.print_info('Start test_student_adult')
         test_stud = Student.objects.create(first_name='Name', last_name='Lname', age=18)
         test_stud2 = Student.objects.create(first_name='Name', last_name='Lname', age=17)
@@ -53,14 +53,14 @@ class MovieModelTestCase(TestCase):
         self.print_info('Finish test_student_adult')
 
     def test_student_full_name(self):
-        # Проверка метода __str__()
+        # Проверка метода get_full_name()
         self.print_info('Start test_student_full_name')
         expected_str = 'Окакий Петров'
         self.assertEqual(self.petrov.get_full_name(), expected_str)
         self.print_info('Finish test_student_full_name')
 
     def test_student_date_default_value(self):
-        # Проверка значения по умолчанию для budget
+        # Проверка значения по умолчанию для created_at
         self.print_info('Start test_student_date_default_value')
         stud1 = Student.objects.create(first_name='Name', last_name='Lname', age=18)
         self.assertEqual(stud1.created_at.date(), datetime.now().date())

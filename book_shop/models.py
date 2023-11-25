@@ -10,5 +10,5 @@ class Book(models.Model):
     author = models.CharField(max_length=100, null=True)
 
     def __str__(self):
-        return f'{self.author} - {self.title} {self.rating} {self.is_best_selling} {self.id}'
+        return f'#{self.id}. {self.author} - {self.title}'
 

@@ -17,3 +17,6 @@ class Student(models.Model):
 
     def is_adult(self):
         return self.age >= 18
+
+    def __str__(self):
+        return f'#{self.id} {self.get_full_name()}'
