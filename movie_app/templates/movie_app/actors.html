@@ -1,0 +1,26 @@
+{% extends 'movie_app/base.html' %}
+{% load static %}
+{% block title %}актеры{% endblock %}
+{% block css_additional %} <link rel="stylesheet" href="{% static 'app_for_tests/css/table.css' %}"> {% endblock %}
+
+{% block content %}
+    <h2>Список всех режиссеров</h2>
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Пол</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for actor in actors %}
+            <tr>
+                <td><a href="{% url 'actor' actor.id %}">{{ actor.first_name }}</a></td>
+                <td><a href="{% url 'actor' actor.id %}">{{ actor.last_name }}</a></td>
+                <td>{{ actor.gender }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

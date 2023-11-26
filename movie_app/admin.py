@@ -1,8 +1,6 @@
 from django.contrib import admin, messages
 from django.db.models import QuerySet
-from .models import Movie
-
-# Register your models here.
+from .models import Movie, Director, Actor
 
 
 class RatingFilter(admin.SimpleListFilter):
@@ -35,8 +33,9 @@ class MovieAdmin(admin.ModelAdmin):
     # exclude = ['slug']
     prepopulated_fields = {'slug': ('name',)}
     readonly_fields = ['year']
-    list_display = ['name', 'rating', 'year', 'rating_status', 'currency']
-    list_editable = ['rating', 'year', 'currency']
+    list_display = ['name', 'rating', 'year', 'rating_status', 'director']
+    list_editable = ['rating', 'year', 'director']
+    filter_horizontal = ['actors']
     ordering = ['rating', 'name']
     list_per_page = 10                          # пагинация
     actions = ['set_dollars', 'set_eur']
@@ -65,3 +64,15 @@ class MovieAdmin(admin.ModelAdmin):
         self.message_user(request, f'Было обновлено {count_updated} записей', messages.ERROR)
 
 # admin.site.register(Movie, MovieAdmin) - заменено на декоратор
+
+
+@admin.register(Director)
+class DirectorAdmin(admin.ModelAdmin):
+    list_display = ['id', 'last_name', 'first_name', 'email']
+    list_editable = ['last_name', 'first_name', 'email']
+    ordering = ['last_name']
+    search_fields = ['last_name']
+    list_filter = ['last_name']
+
+
+admin.site.register(Actor)

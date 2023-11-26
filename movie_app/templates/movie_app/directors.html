@@ -1,0 +1,26 @@
+{% extends 'movie_app/base.html' %}
+{% load static %}
+{% block title %}режиссеры{% endblock %}
+{% block css_additional %} <link rel="stylesheet" href="{% static 'app_for_tests/css/table.css' %}"> {% endblock %}
+
+{% block content %}
+    <h2>Список всех режиссеров</h2>
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for director in directors %}
+            <tr>
+                <td><a href="{% url 'director' director.id %}">{{ director.first_name }}</a></td>
+                <td><a href="{% url 'director' director.id %}">{{ director.last_name }}</a></td>
+                <td>{{ director.email }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
