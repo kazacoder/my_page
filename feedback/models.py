@@ -8,3 +8,6 @@ class Feedback(models.Model):
     feedback = models.TextField()
     rating = models.PositiveIntegerField()
 
+    def __str__(self):
+        return f'{self.name} {self.surname}'
+

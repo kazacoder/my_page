@@ -20,7 +20,13 @@
                 {{ field }}
             </div>
         {% endfor %}
-        <button>Отправить</button>
+        <button>
+            {% if upd %}
+                Изменить
+            {% else %}
+                Отправить
+            {% endif %}
+        </button>
     </form>
 </body>
 </html>

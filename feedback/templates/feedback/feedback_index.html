@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Отзывы</title>
+    <link rel="stylesheet" href="{% static 'feedback/css/forms.css' %}">
+</head>
+<body>
+    <h2>Все отзывы</h2>
+    <ul>
+        {% for feed in feeds %}
+            <li><a href="{% url 'feedback-upd' feed.id %}">{{ feed }}</a></li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'feedback-add' %}">новый отзыв</a>
+</body>
+</html>
