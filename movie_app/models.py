@@ -50,7 +50,7 @@ class Movie(models.Model):
         (RUR, "Ruble"),
     ]
 
-    name = models.CharField(max_length=40)
+    name = models.CharField(max_length=100, unique=True)
     rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(100)])
     year = models.IntegerField(null=True, blank=True)
     budget = models.IntegerField(default=1_000_000, validators=[MinValueValidator(1)])

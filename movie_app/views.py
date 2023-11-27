@@ -1,5 +1,8 @@
 from django.db.models import F
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
+
+from .forms import AddMovieForm
 from .models import Movie, Director, Actor
 
 
@@ -35,3 +38,21 @@ def details_director(request, id_director):
 def details_actor(request, id_actor):
     actor = get_object_or_404(Actor, id=id_actor)
     return render(request, 'movie_app/detail_actor.html', {"actor": actor})
+
+
+def add_movie(request):
+    if request.method == 'POST':
+        form = AddMovieForm(request.POST)
+        if form.is_valid():
+            mov = Movie(
+                name=form.cleaned_data['name'],
+                rating=form.cleaned_data['rating'],
+                year=form.cleaned_data['year'],
+                budget=form.cleaned_data['budget'],
+                director=Director.objects.get(id=form.cleaned_data['director']),
+            )
+            mov.save()
+            return HttpResponseRedirect('/movie/movies')
+    else:
+        form = AddMovieForm()
+    return render(request, 'movie_app/add_movie.html', context={'form': form})

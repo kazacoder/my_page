@@ -1,5 +1,5 @@
-from pytils.translit import slugify
+from movie_app.models import Actor, Director, DressingRoom, Movie
 
-d = {'k': ['qwerty']}
 
-print(str(d['k']))
+
+print(Director.objects.all())

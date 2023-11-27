@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить фильм</title>
+    <link rel="stylesheet" href="{% static 'movie_app/css/forms.css' %}">
+</head>
+<body>
+    <h2>Добавить фильм</h2>
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="form-style {% if field.errors %} errors {% endif %}">
+                {{ field.label_tag }}
+                {{ field.errors }}
+                {{ field }}
+            </div>
+        {% endfor %}
+        <button>Сохранить</button>
+    </form>
+</body>
+</html>
