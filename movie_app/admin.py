@@ -1,6 +1,6 @@
 from django.contrib import admin, messages
 from django.db.models import QuerySet
-from .models import Movie, Director, Actor
+from .models import Movie, Director, Actor, DressingRoom
 
 
 class RatingFilter(admin.SimpleListFilter):
@@ -76,3 +76,9 @@ class DirectorAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Actor)
+
+
+@admin.register(DressingRoom)
+class DressingRoomAdmin(admin.ModelAdmin):
+    list_display = ['id', 'number', 'floor', 'actor']
+    list_editable = ['number', 'floor']

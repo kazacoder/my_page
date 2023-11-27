@@ -5,9 +5,21 @@
 
 {% block content %}
     <h2>Информация о фильме </h2>
-    <h2>Название: {{ movie.name }}</h2>
-    <h2>Год: {{ movie.year|default:"-" }}</h2>
-    <h2>Рейтинг: {{ movie.rating }}</h2>
-    <h2>Бюджет: {{ movie.budget }}</h2>
-
+    <h3>Название: {{ movie.name }}</h3>
+    <h3>Год: {{ movie.year|default:"-" }}</h3>
+    <h3>Рейтинг: {{ movie.rating }}</h3>
+    <h3>Бюджет: {{ movie.budget }}</h3>
+    <hr>
+    <h2>Режиссер:</h2>
+    <h3><a href="{% url 'director' movie.director.id|default:0 %}">{{ movie.director|default:'-' }}</a></h3>
+{#    <h3>Имя: {{ movie.director.first_name }}</h3>#}
+{#    <h3>Фамилия: {{ movie.director.last_name }}</h3>#}
+{#    <h3>Email: {{ movie.director.email }}</h3>#}
+    <hr>
+    <h2>Актерский состав</h2>
+    <ul>
+        {% for actor in movie.actors.all %}
+            <li><a href="{% url 'actor' id_actor=actor.id%}">{{ actor }}</a></li>
+        {% endfor %}
+    </ul>
 {% endblock %}

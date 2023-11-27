@@ -4,8 +4,15 @@
 {% block css_additional %} <link rel="stylesheet" href="{% static 'app_for_tests/css/table.css' %}"> {% endblock %}
 
 {% block content %}
-    <h2>Информация о режиссере </h2>
+    <h2>Информация об актере </h2>
     <h2>Имя: {{ actor.first_name }}</h2>
     <h2>Фамилия: {{ actor.last_name }}</h2>
     <h2>Пол: {{ actor.gender }}</h2>
+    <hr>
+    <h2>Список фильмов</h2>
+    <ul>
+        {% for movie in actor.movies.all %}
+            <li><a href="{{ movie.get_url }}">{{ movie }}</a> </li>
+        {% endfor %}
+    </ul>
 {% endblock %}

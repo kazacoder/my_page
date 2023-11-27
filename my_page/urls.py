@@ -31,5 +31,6 @@ urlpatterns = [
     path('guiness_records/', include('guinness_records.urls')),
     path('test_app/', include('app_for_tests.urls')),
     path('movie/', include('movie_app.urls')),
+    path('feedback/', include('feedback.urls')),
     path("__debug__/", include("debug_toolbar.urls")),
 ]
