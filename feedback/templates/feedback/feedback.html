@@ -1,31 +1,25 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Отзывы</title>
+    <link rel="stylesheet" href="{% static 'feedback/css/forms.css' %}">
 </head>
 <body>
     <h2>Оставьте отзыв</h2>
-    <form>
-        <label for="name">Имя</label>
-        <input type="text" id="name" name="name">
-        <br>
-        <br>
-        <label for="surname">Фамилия</label>
-        <input type="text" id="surname" name="surname">
-        <br>
-        <br>
-        <label for="feedback_id">Отзыв</label>
-        <textarea name="feedback" id="feedback_id" cols="30" rows="10"></textarea>
-        <br>
-        <br>
-            <br><br>
-  <input type="radio" id="html" name="fav_language" value="HTML">
-  <label for="html">HTML</label><br>
-  <input type="radio" id="css" name="fav_language" value="CSS">
-  <label for="css">CSS</label><br>
-  <input type="radio" id="javascript" name="fav_language" value="JavaScript">
-  <label for="javascript">JavaScript</label><br><br>
+    {% if got_error == True %}
+        <p>Поле имя не может быть пустым!</p>
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="form-style {% if field.errors %} errors {% endif %}">
+                {{ field.label_tag }}
+                {{ field.errors }}
+                {{ field }}
+            </div>
+        {% endfor %}
         <button>Отправить</button>
     </form>
 </body>
