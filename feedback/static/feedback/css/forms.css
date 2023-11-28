@@ -3,6 +3,29 @@ body {
     font-family: Sans-Serif;
 }
 
+ul {
+    -webkit-column-count: 1;
+    -moz-column-count: 1;
+    column-count: 1;
+    list-style-type: none;
+    background-color: #f1f1f1;
+    max-width: 50%;
+    border-radius: 20px;
+    margin: auto;
+    padding: 1px;
+}
+
+ul li {
+    text-align: center;
+    width: 100%;
+    font-size: 1rem;
+    padding: 5px 5px;
+}
+
+ul a:hover, ul a:active {
+    color: #eca8b5;
+}
+
 h2{
     width:50%;
     margin: 20px auto 5px;
@@ -25,9 +48,10 @@ form {
 
 button {
     cursor: pointer;
-    background-color: #bf0d55;
+    background-color: #1b53cd;
     color: white;
-    border: 10px solid #bf0d55;
+    border: 10px solid #1b53cd;
+    border-radius: 7px;
 }
 
 button:hover,
@@ -49,7 +73,22 @@ button:active {
     width: 10rem;
 }
 
+.form-style textarea {
+    font: inherit;
+    padding: 0.25rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    display: block;
+    width: 20rem;
+}
+
 .form-style input:focus {
+    border-color: #1f0050;
+    background-color: #f4eeff;
+    outline: none;
+}
+
+.form-style textarea:focus {
     border-color: #1f0050;
     background-color: #f4eeff;
     outline: none;
@@ -75,4 +114,13 @@ button:active {
 
 .errors label{
  color: #aa1754;
+}
+
+.btn-center {
+    margin: 0 auto;
+    display: block;
+}
+
+.center {
+    text-align: center;
 }

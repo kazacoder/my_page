@@ -4,10 +4,10 @@
 {% endblock %}
 {% block content %}
     <h2>Все отзывы</h2>
+    <button class="btn-center" onclick="document.location.href='{% url 'feedback-add' %}'">Новый отзыв</button>
     <ul>
         {% for feed in feeds %}
             <li><a href="{% url 'feedback-upd' feed.id %}">{{ feed }}</a></li>
         {% endfor %}
     </ul>
-    <a href="{% url 'feedback-add' %}">новый отзыв</a>
 {% endblock %}
