@@ -1,9 +1,9 @@
 from django.urls import path
-from .views import index, done, feed_add, feed_upd
+from .views import FeedBackView, DoneView, IndexView
 
 urlpatterns = [
-    path('', index, name='feedback-index'),
-    path('done', done, name='done'),
-    path('feed_add', feed_add, name='feedback-add'),
-    path('<int:id_feed>', feed_upd, name='feedback-upd'),
+    path('', IndexView.as_view(), name='feedback-index'),
+    path('done', DoneView.as_view(), name='done'),
+    path('feed_add', FeedBackView.as_view(), name='feedback-add'),
+    path('<int:id_feed>', FeedBackView.as_view(), name='feedback-upd'),
 ]

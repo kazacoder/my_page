@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Отзывы</title>
-    <link rel="stylesheet" href="{% static 'feedback/css/forms.css' %}">
-</head>
-<body>
+{% extends 'feedback/base.html' %}
+{% block title %}
+    Отзывы
+{% endblock %}
+{% block content %}
     <h2>Все отзывы</h2>
     <ul>
         {% for feed in feeds %}
@@ -14,5 +10,4 @@
         {% endfor %}
     </ul>
     <a href="{% url 'feedback-add' %}">новый отзыв</a>
-</body>
-</html>
+{% endblock %}

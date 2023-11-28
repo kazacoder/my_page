@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Отзыв отправлен</title>
-</head>
-<body>
-    <h2><a href="/feedback" >Ваш отзыв успешно отправлен</a></h2>
-</body>
-</html>
+{% extends 'feedback/base.html' %}
+{% block title %}
+    <title>Отзыв готов</title>
+{%  endblock %}
+
+{%  block content %}
+    <h2><a href="/feedback">Ваш отзыв успешно {% if upd %}изменен{% else %}отправлен{% endif %}</a></h2>
+{% endblock %}

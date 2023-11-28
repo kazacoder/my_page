@@ -44,14 +44,14 @@ def add_movie(request):
     if request.method == 'POST':
         form = AddMovieForm(request.POST)
         if form.is_valid():
-            mov = Movie(
-                name=form.cleaned_data['name'],
-                rating=form.cleaned_data['rating'],
-                year=form.cleaned_data['year'],
-                budget=form.cleaned_data['budget'],
-                director=Director.objects.get(id=form.cleaned_data['director']),
-            )
-            mov.save()
+            # mov = Movie(
+            #     name=form.cleaned_data['name'],
+            #     rating=form.cleaned_data['rating'],
+            #     year=form.cleaned_data['year'],
+            #     budget=form.cleaned_data['budget'],
+            #     director=Director.objects.get(id=form.cleaned_data['director']),
+            # )
+            form.save()
             return HttpResponseRedirect('/movie/movies')
     else:
         form = AddMovieForm()

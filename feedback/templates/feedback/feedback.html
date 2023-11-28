@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Отзывы</title>
-    <link rel="stylesheet" href="{% static 'feedback/css/forms.css' %}">
-</head>
-<body>
-    <h2>Оставьте отзыв</h2>
-    {% if got_error == True %}
-        <p>Поле имя не может быть пустым!</p>
-    {% endif %}
+{% extends 'feedback/base.html' %}
+{% block title %}
+    Отзыв
+{% endblock %}
+
+{% block content %}
+    <h2>{% if upd %}Изменить отзыв{% else %}Оставьте отзыв{% endif %}</h2>
     <form method="post">
         {% csrf_token %}
         {% for field in form %}
@@ -28,5 +22,4 @@
             {% endif %}
         </button>
     </form>
-</body>
-</html>
+{% endblock %}

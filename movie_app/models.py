@@ -34,10 +34,11 @@ class Actor(models.Model):
     dressing = models.OneToOneField(DressingRoom, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
-        if self.gender == self.MALE:
-            return f'Актер {self.first_name} {self.last_name}'
-        else:
-            return f'Актриса {self.first_name} {self.last_name}'
+        return f'{self.first_name} {self.last_name}'
+        # if self.gender == self.MALE:
+        #     return f'Актер {self.first_name} {self.last_name}'
+        # else:
+        #     return f'Актриса {self.first_name} {self.last_name}'
 
 
 class Movie(models.Model):

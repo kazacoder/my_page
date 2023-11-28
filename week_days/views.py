@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from calendar import day_name
 from django.shortcuts import render
@@ -9,10 +10,12 @@ home = '<br><a href="/">home</a>'
 back = '<br><a href="..">back</a>'
 
 
+@login_required
 def todo_week(request):
     return render(request, 'week_days/greeting.html')
 
 
+@login_required
 def todo_weekday(request, weekday):
     todo_days = {
         'monday': '''<h1>Список дел на понедельник</h1>
@@ -37,6 +40,7 @@ def todo_weekday(request, weekday):
     return HttpResponseNotFound(f'Не правильный день недели {weekday}' + back + home)
 
 
+@login_required
 def todo_weekday_by_number(request, weekday):
     if 0 < weekday < 8:
         redirect_url = reverse('todo-week', args=(day_name[weekday-1].lower(),))
