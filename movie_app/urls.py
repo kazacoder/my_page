@@ -3,7 +3,7 @@ from . import views
 
 urlpatterns = [
     path('', views.index),
-    path('movies', views.movies, name='movies'),
+    path('movies', views.MoviesList.as_view(), name='movies'),
     path('movies/add_movie', views.add_movie, name='add-movie'),
     path('directiors', views.directors, name='directors'),
     path('actiors', views.actors, name='actors'),

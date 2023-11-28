@@ -1,0 +1,12 @@
+{% extends 'feedback/base.html' %}
+{% block title %}
+    Отзыв
+{% endblock %}
+
+{% block content %}
+    <h2>{{ feed.surname }} {{ feed.name }}</h2>
+    <h2>{{ feed.feedback }}</h2>
+    <h2>{{ feed.rating }}</h2>
+    <button class="btn-center" onclick="document.location.href='{% url 'feedback-upd' feed.id %}'">Изменить</button>
+
+{% endblock %}

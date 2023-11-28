@@ -7,7 +7,7 @@
     <button class="btn-center" onclick="document.location.href='{% url 'feedback-add' %}'">Новый отзыв</button>
     <ul>
         {% for feed in feeds %}
-            <li><a href="{% url 'feedback-upd' feed.id %}">{{ feed }}</a></li>
+            <li><a href="{% url 'detail-feedback' feed.id %}">{{ feed }}</a></li>
         {% endfor %}
     </ul>
 {% endblock %}

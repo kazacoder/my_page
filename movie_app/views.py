@@ -1,14 +1,26 @@
 from django.db.models import F
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
+from django.views.generic import ListView
 
 from .forms import AddMovieForm
 from .models import Movie, Director, Actor
 
 
-def movies(request):
-    movies_list = Movie.objects.order_by(F('year').asc(nulls_last=True))
-    return render(request, 'movie_app/movie.html', {"movies": movies_list})
+class MoviesList(ListView):
+    model = Movie
+    template_name = 'movie_app/movie.html'
+    context_object_name = 'movies'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        ordered_qs = queryset.order_by(F('year').asc(nulls_last=True))
+        return ordered_qs
+
+
+# def movies(request):
+#     movies_list = Movie.objects.order_by(F('year').asc(nulls_last=True))
+#     return render(request, 'movie_app/movie.html', {"movies": movies_list})
 
 
 def directors(request):

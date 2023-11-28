@@ -1,6 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import TemplateView
+from django.urls import reverse
+from django.views.generic import TemplateView, ListView
 
 from .forms import FeedbackForm
 from django.http import HttpResponse, HttpResponseRedirect
@@ -30,16 +31,31 @@ class FeedBackView(LoginRequiredMixin, View):
             upd = ''
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('done' + f'?upd={upd}')
+            return HttpResponseRedirect(reverse('done') + f'?upd={upd}')
         return render(request, 'feedback/feedback.html', context={'form': form, 'upd': upd})
 
 
-class IndexView(LoginRequiredMixin, TemplateView):
+class IndexView(LoginRequiredMixin, ListView):
     template_name = 'feedback/feedback_index.html'
+    model = Feedback
+    context_object_name = 'feeds'
+
+
+# class IndexView(LoginRequiredMixin, TemplateView):
+#     template_name = 'feedback/feedback_index.html'
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['feeds'] = Feedback.objects.all()
+#         return context
+
+
+class DetailFeedBack(LoginRequiredMixin, TemplateView):
+    template_name = 'feedback/detail_feedback.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['feeds'] = Feedback.objects.all()
+        context['feed'] = Feedback.objects.get(id=context['id_feed'])
         return context
 
 
