@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views import View
 from .forms import GalleryUploadForm
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView
 
 from .models import Gallery
 
@@ -19,10 +19,10 @@ class GalleryView(CreateView):
     success_url = 'load_file'
 
 
-class IndexView(View):
-    def get(self, request):
-        context = {'files': get_files_list('uploads/gallery')}
-        return render(request, 'gallery/gallery_index.html', context=context)
+class IndexView(ListView):
+    model = Gallery
+    template_name = 'gallery/gallery_index.html'
+    context_object_name = 'files'
 
 
 # class GalleryView(View):

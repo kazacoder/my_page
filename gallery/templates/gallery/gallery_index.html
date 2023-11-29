@@ -1,4 +1,5 @@
 {% extends 'feedback/base.html' %}
+{% load my_filter %}
 {% block title %}
     Файлы
 {% endblock %}
@@ -7,7 +8,13 @@
 
     <ul>
         {% for file in files %}
-            <li><a href="/">{{ file }}</a></li>
+            <li><a href="{{ file.file.url }}">{{ file }}{{ file.file.url|check_url }}</a></li>
         {% endfor %}
     </ul>
 {% endblock %}
+
+{##}
+
+
+
+<img src="{{ file.file.url }}" alt="">
