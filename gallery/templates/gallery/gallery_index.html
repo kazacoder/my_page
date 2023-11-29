@@ -1,0 +1,13 @@
+{% extends 'feedback/base.html' %}
+{% block title %}
+    Файлы
+{% endblock %}
+{% block content %}
+    <h2>Все файлы</h2>
+
+    <ul>
+        {% for file in files %}
+            <li><a href="/">{{ file }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

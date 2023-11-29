@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'feedback/css/forms.css' %}">
+</head>
+<body>
+    <div class="center">
+        <button onclick="history.back()">Назад</button>
+        <button onclick="document.location.href='/'">Главная страница</button>
+    </div>
+    {% block content %} {% endblock %}
+</body>
+</html>

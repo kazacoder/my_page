@@ -32,5 +32,6 @@ urlpatterns = [
     path('test_app/', include('app_for_tests.urls')),
     path('movie/', include('movie_app.urls')),
     path('feedback/', include('feedback.urls')),
+    path('gallery/', include('gallery.urls')),
     path("__debug__/", include("debug_toolbar.urls")),
 ]

@@ -1,5 +1,11 @@
-from movie_app.models import Actor, Director, DressingRoom, Movie
+import os
 
 
+directory_cur = 'gallery/files'
 
-print(Director.objects.all())
+
+def get_files_list(directory):
+    return os.listdir(directory)
+
+
+print(get_files_list(directory_cur))
