@@ -19,7 +19,7 @@
     <h2>Актерский состав</h2>
     <ul>
         {% for actor in movie.actors.all %}
-            <li><a href="{% url 'actor' id_actor=actor.id%}">{{ actor }}</a></li>
+            <li><a href="{% url 'actor' pk=actor.id%}">{{ actor }}</a></li>
         {% endfor %}
     </ul>
 {% endblock %}

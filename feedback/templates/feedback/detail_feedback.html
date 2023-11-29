@@ -4,9 +4,16 @@
 {% endblock %}
 
 {% block content %}
-    <h2>{{ feed.surname }} {{ feed.name }}</h2>
+    <h2>{{ object.surname }} {{ feed.name }}</h2>
     <h2>{{ feed.feedback }}</h2>
     <h2>{{ feed.rating }}</h2>
-    <button class="btn-center" onclick="document.location.href='{% url 'feedback-upd' feed.id %}'">Изменить</button>
+    <div class="center">
+        <button onclick="document.location.href='{% url 'feedback-upd' feed.id %}'">Изменить</button>
+        <button onclick="document.location.href='{% url 'feedback-del' feed.id %}'">Удалить</button>
+    </div>
+    <form class="empty" method="post" action="{% url 'feedback-del' feed.id %}" >
+        {% csrf_token %}
+        <button class="btn-center" type="submit">Удалить</button>
+    </form>
 
 {% endblock %}

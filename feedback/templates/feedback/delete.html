@@ -1,0 +1,14 @@
+{% extends 'feedback/base.html' %}
+{% block title %}
+    <title>Удалить отзыв</title>
+{%  endblock %}
+
+{%  block content %}
+    <form action="" method="post">{% csrf_token %}
+        <div class="center">
+            <p>Вы уверены, что хотите удалить "{{ object }}"?</p>
+            <button>Удалить!</button>
+            <button type="button" onclick="history.back()">Отмена</button>
+        </div>
+    </form>
+{% endblock %}
