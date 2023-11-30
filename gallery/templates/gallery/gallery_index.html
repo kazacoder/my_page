@@ -8,13 +8,9 @@
 
     <ul>
         {% for file in files %}
-            <li><a href="{{ file.file.url }}">{{ file }}{{ file.file.url|check_url }}</a></li>
+            {% if file.file.path|check_path %}
+                <li><a href="{{ file.file.url }}">{{ file }}</a></li>
+            {% endif %}
         {% endfor %}
     </ul>
 {% endblock %}
-
-{##}
-
-
-
-<img src="{{ file.file.url }}" alt="">
