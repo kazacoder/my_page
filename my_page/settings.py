@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'scool',
     'feedback',
     'gallery',
+    'camera',
 ]
 
 MIDDLEWARE = [

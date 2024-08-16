@@ -36,4 +36,5 @@ urlpatterns = [
     path('feedback/', include('feedback.urls')),
     path('gallery/', include('gallery.urls')),
     path("__debug__/", include("debug_toolbar.urls")),
+    path("camera/", include("camera.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
